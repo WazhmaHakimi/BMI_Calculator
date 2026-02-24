@@ -9,22 +9,52 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
-      ),
-      body: Center(
-        child: Text('Body Text'),
+      appBar: AppBar(title: Text('BMI CALCULATOR')),
+      body: Column(
+        children: [
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: ReusableCard()),
+                Expanded(child: ReusableCard()),
+              ],
+            ),
+          ),
+          Expanded(child: ReusableCard()),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(child: ReusableCard()),
+                Expanded(child: ReusableCard()),
+              ],
+            ),
+          ),
+        ],
       ),
       floatingActionButton: Theme(
         data: ThemeData(
-            floatingActionButtonTheme: FloatingActionButtonThemeData(
-                backgroundColor: Colors.green
-            )
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Colors.green,
+          ),
         ),
-        child: FloatingActionButton(
-          child: Icon(Icons.add),
-          onPressed: () {},
-        ),
+        child: FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
+      ),
+    );
+  }
+}
+
+class ReusableCard extends StatelessWidget {
+  final Color? color;
+
+  ReusableCard({this.color});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: color ?? Color(0xFF1D1E33),
+        borderRadius: BorderRadius.circular(10),
       ),
     );
   }
