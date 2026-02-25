@@ -5,7 +5,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const double bottomContainerHeight = 80;
 
+const Color activeCardColor = Color(0xFF1D1E33);
+
+const Color inactiveCardColor = Color(0xFF111328);
+
 const Color bottomContainerColor = Color(0xFFE81555);
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   @override
@@ -13,6 +19,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,12 +30,42 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableCard(
-                  child: IconContent(icon: FontAwesomeIcons.mars, label: 'MALE',)
-                )),
-                Expanded(child: ReusableCard(
-                  child: IconContent(icon: FontAwesomeIcons.venus, label: 'FEMALE',),
-                )),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    },
+                    child: ReusableCard(
+                      color: selectedGender == Gender.male
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      child: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        label: 'MALE',
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    },
+                    child: ReusableCard(
+                      color: selectedGender == Gender.female
+                          ? activeCardColor
+                          : inactiveCardColor,
+                      child: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        label: 'FEMALE',
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -46,8 +84,7 @@ class _InputPageState extends State<InputPage> {
             margin: EdgeInsets.only(top: 10),
             width: double.infinity,
             height: bottomContainerHeight,
-
-          )
+          ),
         ],
       ),
       floatingActionButton: Theme(
@@ -61,5 +98,3 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
-
-
