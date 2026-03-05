@@ -16,6 +16,10 @@ class _InputPageState extends State<InputPage> {
 
   int height = 160;
 
+  int weight = 60;
+
+  int age = 20;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,8 +106,76 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(child: ReusableCard()),
-                Expanded(child: ReusableCard()),
+                Expanded(
+                  child: ReusableCard(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('WEIGHT', style: kLabelTextStyle),
+                        Text(weight.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
+                            ),
+
+                            SizedBox(width: 10),
+
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ReusableCard(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('AGE', style: kLabelTextStyle),
+                        Text(age.toString(), style: kNumberTextStyle),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+
+                            SizedBox(width: 10),
+
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -116,14 +188,26 @@ class _InputPageState extends State<InputPage> {
           ),
         ],
       ),
-      floatingActionButton: Theme(
-        data: ThemeData(
-          floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.green,
-          ),
-        ),
-        child: FloatingActionButton(child: Icon(Icons.add), onPressed: () {}),
-      ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  final IconData? icon;
+
+  final VoidCallback? onPressed;
+
+  RoundIconButton({required this.icon, required this.onPressed});
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(icon),
+      constraints: BoxConstraints.tightFor(width: 56.5, height: 56.5),
+      fillColor: Color(0xFF4C4F5E),
+      elevation: 6,
+      onPressed: onPressed,
+      shape: CircleBorder(),
     );
   }
 }
