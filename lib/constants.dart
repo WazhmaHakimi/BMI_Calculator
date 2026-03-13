@@ -12,3 +12,27 @@ const Color kActiveCardColor = Color(0xFF1D1E33);
 const Color kInactiveCardColor = Color(0xFF111328);
 
 const Color kBottomContainerColor = Color(0xFFE81555);
+
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+const kTitleTextStyle = TextStyle(fontSize: 50, fontWeight: FontWeight.bold);
+
+const kResultTextStyle = TextStyle(
+  color: Color(0xFF240876),
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+);
+
+const kBMITextStyle = TextStyle(fontSize: 100, fontWeight: FontWeight.bold);
+
+const kGreyBodyTextStyle = TextStyle(fontSize: 22, color: Colors.grey);
+
+const kBodyTextStyle = TextStyle(fontSize: 22);
+
+const kAppbarTitleTextStyle = TextStyle(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+);
