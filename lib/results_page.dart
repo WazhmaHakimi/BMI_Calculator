@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+  final String? bmiResult, resultText, interpretation;
+
+  ResultsPage({
+    required this.bmiResult,
+    required this.resultText,
+    required this.interpretation,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,8 +45,12 @@ class ResultsPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('Normal', style: kResultTextStyle),
-                  Text('21.3', style: kBMITextStyle),
+                  Text(resultText!.toUpperCase(), style: kResultTextStyle),
+                  Text(
+                    bmiResult!,
+                    style: kBMITextStyle,
+                    textAlign: TextAlign.center,
+                  ),
                   Column(
                     children: [
                       Text('Normal BMI Ragne', style: kGreyBodyTextStyle),
@@ -50,7 +60,7 @@ class ResultsPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
-                      'You have a normal body weight. Good Job',
+                      interpretation!,
                       style: kBodyTextStyle,
                       textAlign: TextAlign.center,
                     ),

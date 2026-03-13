@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/calculator.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:bmi_calculator/results_page.dart';
@@ -187,9 +188,10 @@ class _InputPageState extends State<InputPage> {
           BottomButton(
             title: 'Calculate',
             onTap: () {
+              Calculator calculator = Calculator(height: height, weight: weight);
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ResultsPage()),
+                MaterialPageRoute(builder: (context) => ResultsPage(bmiResult: calculator.calculateBMI(), resultText: calculator.getResult(), interpretation: calculator.getInterpretation())),
               );
             },
           ),
